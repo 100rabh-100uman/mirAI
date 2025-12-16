@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>mirAI | The Future</title>
+
+    <link rel="stylesheet" href="mirAI.css">
+    </head>
+    <link rel="stylesheet" href="mirAI.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,600&family=Montserrat:wght@300;400;500;600;800&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+<div id="login-overlay" class="login-overlay">
+    <div class="login-glass-card">
+        <div class="login-header">
+    <div class="login-brand-container">
+        
+        <div class="logo-icon-small" style="margin: 0 !important;">
+            <div class="capsule-border"></div>
+            <div class="inner-circles"><div class="circle circle-top"></div><div class="circle circle-bottom"></div></div>
+        </div>
+
+        <span class="login-logo-text">mir<span>AI</span></span>
+    </div>
+    
+    <h3>Identify Yourself</h3>
+<p>Secure access to mirAI Core.</p>
+</div>
+
+<form id="login-form">
+    <div class="input-group big-input"> <i class="fas fa-user"></i>
+        <input type="text" id="user-name-input" placeholder="Your Name" required autocomplete="off">
+    </div>
+
+    <button type="submit" class="login-btn">
+        <span>AUTHENTICATE</span>
+        <div class="btn-glow"></div>
+    </button>
+</form>
+        <p class="login-footer">Face ID Scanner: <span class="blink">Standby</span></p>
+    </div>
+</div>
+
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="logo-icon-large">
+                <div class="capsule-border"></div>
+                <div class="inner-circles"><div class="circle circle-top"></div><div class="circle circle-bottom"></div></div>
+                <div class="spark">✦</div>
+            </div>
+            <div class="loader-logo">mir<span>AI</span></div>
+            <div class="loader-line"></div>
+            <button id="enter-btn" class="enter-btn">ENTER EXPERIENCE</button>
+        </div>
+    </div>
+
+    <audio id="welcome-audio" src="welcome.mp3" preload="auto"></audio>
+
+    <div id="three-bg"></div>
+    <div class="vignette"></div>
+
+    <div id="video-modal" class="video-modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-video">&times;</span>
+            <video id="promo-video" controls>
+                <source src="mirAI final video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <div id="myNav" class="sidebar-overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+            <a href="javascript:void(0)" onclick="openJourneyPage()" class="highlight-link">A day with mirAI</a>
+            <a href="javascript:void(0)" onclick="openAppPage()" class="highlight-link">The App Ecosystem</a>
+        </div>
+    </div>
+
+    <div id="journey-overlay-section" class="app-fullscreen-overlay">
+        <a href="javascript:void(0)" class="close-app-btn" onclick="closeJourneyPage()">&times;</a>
+        <div class="app-content-wrapper">
+            <section class="journey-section-overlay">
+                <div class="section-header-overlay">
+                    <span class="vision-label">THE EXPERIENCE</span>
+                    <h3>A Day in the Future</h3>
+                    <p>Follow the winding path of a perfect day.</p>
+                </div>
+                <div class="snake-roadmap">
+                    <div class="snake-item left">
+                        <div class="snake-content">
+                            <span class="time-tag">07:00 AM</span>
+                            <h4>The Gentle Awakening</h4>
+                            <p>No jarring alarms. mirAI simulates a <strong>sunrise</strong> with gradually increasing warm light. You wake up naturally, seeing only what matters: Weather & First Meeting.</p>
+                        </div>
+                    </div>
+                    <div class="snake-connector c-right"></div>
+                    <div class="snake-item right">
+                        <div class="snake-content">
+                            <span class="time-tag">07:45 AM</span>
+                            <h4>Invisible Doctor</h4>
+                            <p>While you brush your teeth, mirAI silently scans your <strong>Heart Rate & Blood Pressure</strong> using rPPG. "Vitals are normal, Saurabh." Peace of mind, delivered daily.</p>
+                        </div>
+                    </div>
+                    <div class="snake-connector c-left"></div>
+                    <div class="snake-item left">
+                        <div class="snake-content">
+                            <span class="time-tag">08:30 AM</span>
+                            <h4>The Style Strategist</h4>
+                            <p>Sunny but windy? Big presentation? mirAI suggests: <em>"Navy Blue Blazer with the Beige Chinos."</em> You leave looking sharp, confident, and on time.</p>
+                        </div>
+                    </div>
+                    <div class="snake-connector c-right"></div>
+                    <div class="snake-item right">
+                        <div class="snake-content">
+                            <span class="time-tag">02:00 PM</span>
+                            <h4>Guardian at Home</h4>
+                            <p>You are at the office. Your phone pings via the <strong>mirAI App</strong>. "Motion detected in Living Room - Cleaner arrived." Your home stays secure even when you aren't there.</p>
+                        </div>
+                    </div>
+                    <div class="snake-connector c-left"></div>
+                    <div class="snake-item left">
+                        <div class="snake-content">
+                            <span class="time-tag">06:30 PM</span>
+                            <h4>Mood Adaptation</h4>
+                            <p>You return tired. mirAI reads the <strong>micro-expressions</strong> of stress on your face. It instantly dims the lights to 'Amber Glow' and queues a relaxing Lo-Fi playlist.</p>
+                        </div>
+                    </div>
+                    <div class="snake-connector c-right"></div>
+                    <div class="snake-item right">
+                        <div class="snake-content">
+                            <span class="time-tag">10:30 PM</span>
+                            <h4>Sleep Protocol</h4>
+                            <p>mirAI fades to black, activating the physical <strong>Camera Shutter</strong> for 100% privacy. It whispers: "Sleep goal met today. Goodnight."</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="app-overlay-section" class="app-fullscreen-overlay">
+        <a href="javascript:void(0)" class="close-app-btn" onclick="closeAppPage()">&times;</a>
+        <div class="app-content-wrapper">
+            <section class="app-section">
+                <div class="app-container-fixed">
+                    <div class="app-text-side">
+                        <span class="vision-label">TOTAL CONTROL</span>
+                        <h2>The mirAI Connect App</h2>
+                        <p class="app-sub">Your mirror, in your pocket.</p>
+                        <ul class="app-features-list">
+                            <li><i class="fas fa-check-circle"></i> <strong>Remote Guardian:</strong> Get fall alerts instantly on your phone.</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Family Dashboard:</strong> Manage profiles and privacy settings.</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Health History:</strong> View weekly blood pressure & stress trends.</li>
+                        </ul>
+                        <div class="app-buttons">
+                            <button class="store-btn"><i class="fab fa-apple"></i> App Store</button>
+                            <button class="store-btn"><i class="fab fa-google-play"></i> Play Store</button>
+                        </div>
+                    </div>
+                    <div class="app-visual-side">
+                        <div class="phone-mockup">
+                            <div class="phone-notch"></div>
+                            <div class="phone-screen">
+                                <div class="app-header"><span>Good Morning</span><i class="fas fa-user-circle"></i></div>
+                                <div class="app-card graph-card">
+                                    <div class="graph-header"><span><i class="fas fa-moon"></i> Sleep Cycle</span><span class="value-gold">7h 12m</span></div>
+                                    <div class="sleep-bars"><div class="bar" style="height: 30%"></div><div class="bar" style="height: 50%"></div><div class="bar" style="height: 80%"></div><div class="bar" style="height: 60%"></div><div class="bar" style="height: 90%"></div><div class="bar" style="height: 40%"></div><div class="bar" style="height: 70%"></div></div>
+                                    <span class="graph-label">Deep Sleep: 2h 40m</span>
+                                </div>
+                                <div class="app-card graph-card">
+                                    <div class="graph-header"><span><i class="fas fa-brain"></i> Stress</span><span class="value-green">Normal</span></div>
+                                    <div class="stress-chart"><svg viewBox="0 0 100 40" class="line-svg"><defs><linearGradient id="goldGradient" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:rgb(230, 194, 136);stop-opacity:0.8" /><stop offset="100%" style="stop-color:rgb(230, 194, 136);stop-opacity:0" /></linearGradient></defs><path d="M0,35 Q10,30 20,25 T40,15 T60,20 T80,10 T100,25" fill="url(#goldGradient)" stroke="#E6C288" stroke-width="2" /></svg></div>
+                                    <span class="graph-label">Avg HRV: 65ms</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="phone-glow"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <header id="navbar">
+        <div class="brand-logo-nav">
+            <div class="logo-icon-small">
+                <div class="capsule-border"></div>
+                <div class="inner-circles"><div class="circle circle-top"></div><div class="circle circle-bottom"></div></div>
+                <div class="spark">✦</div>
+            </div>
+            <div class="logo-text-nav">mir<span>AI</span></div>
+        </div>
+        <nav>
+            <a href="#vision">Vision</a>
+            <a href="#core-features">Features</a>
+            <a href="#tech-specs">Specs</a>
+            <a href="#health-guardian" style="color: var(--color-gold);">Health AI</a>
+            <a href="#footer" class="nav-cta">PRE-ORDER NOW</a>
+        </nav><div class="auth-group">
+    <button class="login-text-btn">Log In</button>
+    <button class="signup-gold-btn">Sign Up</button>
+</div>
+        <div class="menu-icon" onclick="openNav()"><i class="fas fa-bars"></i></div>
+    </header>
+
+    <section id="home" class="landing-hero">
+        <div class="landing-content-split">
+            <div class="hero-left">
+                <div class="brand-identity-vertical">
+                    <div class="logo-mark-large"><div class="mark-frame"></div><div class="mark-loop"></div><div class="mark-spark">✦</div></div>
+                    <div class="logo-type-large">mir<span>AI</span></div>
+                    <div class="logo-tagline-vertical">INTELLIGENCE REFLECTED</div>
+                </div>
+                <div class="slogan-box"><p class="hero-functional-slogan">"A single <span class="highlight-gold">masterpiece</span> that elegantly merges your <span class="highlight-white">wall clock</span>, <span class="highlight-white">calendar</span>, and <span class="highlight-white">intelligent reflection</span>."</p></div>
+            </div>
+            <div class="hero-right">
+                <div class="hero-text-box">
+                    <h1 class="hero-main-headline">Reflect Your Life. <br><span class="hero-gradient-text">Reinvented by AI.</span></h1>
+                    <h3 class="hero-sub-headline">The world's first privacy-focused smart mirror where <span class="highlight-white">Luxury meets Artificial Intelligence.</span></h3>
+                    <p class="hero-description">mirAI is not just a mirror; it is a <span class="highlight-gold">masterpiece</span> for your home. Powered by an advanced Neural Network, it seamlessly organizes your <strong>outfit</strong>, monitors your <strong>wellness</strong>, and manages your <strong>schedule</strong> before you even start your day. Experience a morning routine where technology feels like magic—<span class="highlight-white">invisible, intelligent, and designed for you.</span></p>
+                    <div class="hero-buttons">
+                        <a href="#simulation-section" class="cta-button pulse">Try Live Simulation</a>
+                        <button class="secondary-btn" id="watch-film-btn">Watch The Film <i class="fas fa-play-circle" style="margin-left: 8px;"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="quote-divider-section"><h2 class="big-quote-text">"Powered by <span class="serif-italic">AI</span>, designed for <span class="serif-italic text-gold">life</span>."</h2></div>
+
+    <section id="simulation-section" class="sim-section">
+        <div class="section-header demo-header-enhanced"><h3>Interactive Demo</h3><p>Experience the intelligent interface live.</p></div>
+        <div class="sim-controls">
+            <button onclick="setMode('morning')" class="sim-btn active"><i class="fas fa-sun"></i> Morning</button>
+            <button onclick="setMode('outfit')" class="sim-btn"><i class="fas fa-tshirt"></i> Outfit</button>
+            <button onclick="setMode('emergency')" class="sim-btn danger"><i class="fas fa-exclamation-triangle"></i> Fall Alert</button>
+        </div>
+        
+        <div class="mirror-stage">
+            <div class="demo-widgets-container">
+                <div class="demo-widget widget-left w-heart">
+                    <i class="fas fa-heartbeat" style="color: #ff4757;"></i>
+                    <div><span class="w-label">LIVE RPPG SCAN</span><span class="w-value">74 BPM</span><span class="w-sub-label">Resting Heart Rate</span></div>
+                </div>
+                <div class="demo-widget widget-left w-steps">
+                    <i class="fas fa-shoe-prints" style="color: #2ed573;"></i>
+                    <div><span class="w-label">SYNCED VIA APP</span><span class="w-value">8,517</span><span class="w-sub-label">Daily Steps</span></div>
+                </div>
+                <div class="demo-widget widget-left w-stress">
+                    <i class="fas fa-brain" style="color: #a55eea;"></i>
+                    <div><span class="w-label">AI FACE SCAN</span><span class="w-value" style="color: #a55eea;">Normal</span><span class="w-sub-label">Stress Level</span></div>
+                </div>
+
+                <div class="demo-widget widget-right w-sleep">
+                    <i class="fas fa-moon" style="color: #1e90ff;"></i>
+                    <div><span class="w-label">SYNCED VIA APP</span><span class="w-value">7h 20m</span><span class="w-sub-label">Sleep Quality: 85%</span></div>
+                </div>
+                <div class="demo-widget widget-right w-water">
+                    <i class="fas fa-tint" style="color: #00d2d3;"></i>
+                    <div><span class="w-label">HYDRATION TRACKER</span><span class="w-value">61%</span><span class="w-sub-label">Goal: 2.5 Liters</span></div>
+                </div>
+                <div class="demo-widget widget-right w-cal">
+                    <i class="fas fa-fire" style="color: #ffa502;"></i>
+                    <div><span class="w-label">SYNCED VIA APP</span><span class="w-value">1,850</span><span class="w-sub-label">Active Calories</span></div>
+                </div>
+            </div>
+
+            <div class="mirror-capsule" id="mirror-3d">
+                <div class="lux-gold-frame"></div><div class="led-light-ring"></div>
+                <div class="screen-glass">
+                    <div class="camera-notch"><div class="lens-glass"></div> <div class="lens-glass"></div> <div class="blue-ring-light"></div><span class="cam-text">CAMERA ACTIVE</span></div>
+                    <div class="ui-content">
+                        <div class="ui-header-row">
+                            <div class="date-widget-left"><span class="month" id="live-month">DEC</span><span class="day" id="live-day">FRI</span><div class="date-circle-big" id="live-date">12</div></div>
+                            <div class="weather-widget-right">
+    <div id="clock" class="live-clock">03:09 PM</div>
+    <div class="sub-info">
+        <span><i class="fas fa-cloud-sun"></i> 28°C</span>
+    </div>
+
+    <div class="aqi-box-mini">
+        <div class="aqi-left">
+            <span class="aqi-val-text">342</span>
+            <span class="aqi-loc-label">AQI • Delhi</span>
+        </div>
+        <div class="aqi-indicator">
+            <i class="fas fa-biohazard"></i>
+        </div>
+    </div>
+    </div>
+                        </div>
+                        <div class="ui-center"><h2 id="greeting">Good Morning, Saurabh</h2><p id="subtext">You look ready to conquer the day.</p></div>
+                        <div class="ui-bottom"><div class="glass-card"><div class="voice-trigger-container">
+    <button class="mic-btn" onclick="activateJarvis()">
+        <i class="fas fa-microphone"></i>
+        <div class="mic-pulse"></div>
+    </button>
+</div><div class="card-icon"><i class="fas fa-magic" id="main-icon"></i></div><div class="card-text"><span class="c-title" id="card-title">Recommendation</span><span class="c-desc" id="card-desc">Silk Blouse, Charcoal Trousers.</span></div></div></div>
+                    </div>
+                    <div class="shine-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+<section class="transformation-section" id="why-mirai">
+    <div class="trans-header">
+        <span class="vision-label">FROM CHAOS TO ORDER</span>
+        <h2 class="section-title">The World is Unpredictable. <br><span class="gold-text">Your Home Shouldn't Be.</span></h2>
+        <p class="section-subtitle">See how mirAI transforms everyday anxiety into absolute control.</p>
+    </div>
+
+    <div class="trans-container">
+
+        <div class="trans-row reveal">
+            <div class="chaos-box">
+                <div class="chaos-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <h3>The Fear of "What If?"</h3>
+                <ul class="chaos-list">
+                    <li><i class="fas fa-times"></i> <strong>Unnoticed Accidents:</strong> Elderly parents slip in the bathroom; no one knows for hours.</li>
+                    <li><i class="fas fa-times"></i> <strong>Invisible Killers:</strong> Gas leaks (LPG) or smoke start silently while you sleep.</li>
+                    <li><i class="fas fa-times"></i> <strong>Nature's Fury:</strong> Gov alerts for Cyclones or Heatwaves get lost in phone notifications.</li>
+                </ul>
+            </div>
+            
+            <div class="vs-line"><span>VS</span></div>
+
+            <div class="order-box">
+                <div class="order-header">
+                    <i class="fas fa-shield-halved"></i>
+                    <h4>The mirAI Guardian</h4>
+                </div>
+                <ul class="order-list">
+                    <li>
+                        <strong><i class="fas fa-user-injured"></i> Active Fall Detection</strong>
+                        <p>Skeletal tracking detects a fall instantly and auto-calls emergency contacts.</p>
+                    </li>
+                    <li>
+                        <strong><i class="fas fa-mask-ventilator"></i> Sensory Cortex</strong>
+                        <p>Visual smoke detection & gas sensor integration trigger a loud house-wide alarm.</p>
+                    </li>
+                    <li>
+                        <strong><i class="fas fa-tower-broadcast"></i> Gov-API Uplink</strong>
+                        <p>Direct sync with Government Disaster Management. Get flash warnings on the mirror <em>before</em> disaster strikes.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="trans-row reveal">
+            <div class="chaos-box">
+                <div class="chaos-icon"><i class="fas fa-heart-broken"></i></div>
+                <h3>The Silent Symptoms</h3>
+                <ul class="chaos-list">
+                    <li><i class="fas fa-times"></i> <strong>Hidden Risks:</strong> You don't know your BP or Stress is high until it's too late.</li>
+                    <li><i class="fas fa-times"></i> <strong>Missed Meds:</strong> "Did Mom take her pill?" Confusion leads to health decline.</li>
+                    <li><i class="fas fa-times"></i> <strong>Generic Advice:</strong> Google gives generic health tips, not what <em>you</em> need right now.</li>
+                </ul>
+            </div>
+
+            <div class="vs-line"><span>VS</span></div>
+
+            <div class="order-box">
+                <div class="order-header">
+                    <i class="fas fa-user-md"></i>
+                    <h4>The Clinical AI</h4>
+                </div>
+                <ul class="order-list">
+                    <li>
+                        <strong><i class="fas fa-heartbeat"></i> Contactless Vitals</strong>
+                        <p>Tracks Heart Rate, BP trends, and Stress via facial blood-flow analysis daily.</p>
+                    </li>
+                    <li>
+                        <strong><i class="fas fa-pills"></i> Family Med-Manager</strong>
+                        <p>Recognizes the face (Dad/Mom) and visually reminds: <em>"Time for your BP tablet."</em></p>
+                    </li>
+                    <li>
+                        <strong><i class="fas fa-brain"></i> Mood & Stress Fix</strong>
+                        <p>Detects high anxiety and auto-plays calming frequencies or breathing guides.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="trans-row reveal">
+            <div class="chaos-box">
+                <div class="chaos-icon"><i class="fas fa-hourglass-end"></i></div>
+                <h3>The Morning Rush</h3>
+                <ul class="chaos-list">
+                    <li><i class="fas fa-times"></i> <strong>Bad Lighting:</strong> Makeup looks wrong in sunlight vs office light. Shaving cuts happen.</li>
+                    <li><i class="fas fa-times"></i> <strong>Traffic Traps:</strong> You leave on time but get stuck in a jam you didn't see.</li>
+                    <li><i class="fas fa-times"></i> <strong>Wardrobe Panic:</strong> Staring at clothes, confused about what matches the weather.</li>
+                </ul>
+            </div>
+
+            <div class="vs-line"><span>VS</span></div>
+
+            <div class="order-box">
+                <div class="order-header">
+                    <i class="fas fa-wand-magic-sparkles"></i>
+                    <h4>The Lifestyle Architect</h4>
+                </div>
+                <ul class="order-list">
+                    <li>
+                        <strong><i class="fas fa-lightbulb"></i> Adaptive Grooming Light</strong>
+                        <p><strong>For Her:</strong> "Daylight Mode" for perfect makeup. <br><strong>For Him:</strong> "Shadow-Free Mode" for a sharp shave.</p>
+                    </li>
+                    <li>
+                        <strong><i class="fas fa-route"></i> Proactive Commute</strong>
+                        <p>Analyze traffic 30 mins <em>before</em> you leave. "Leave 10 mins early, heavy traffic on NH-8."</p>
+                    </li>
+                    <li>
+                        <strong><i class="fas fa-tshirt"></i> AI Stylist</strong>
+                        <p>Suggests outfits based on: <em>Weather + Your Calendar + Style History.</em></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    <section id="vision" class="vision-section">
+        <div class="vision-header glass-panel-header"><span class="vision-label">OUR VISION</span><h2 class="vision-title-main">Reflecting a Smarter, Safer Future.</h2><p class="vision-subtitle">We believe technology should be invisible yet indispensable. mirAI is not just a mirror; it is a <span class="gold-text">Guardian</span> that protects your family, an <span class="gold-text">Organizer</span> that simplifies your chaos, and a <span class="gold-text">Companion</span> that understands your mood.</p></div>
+        <div class="vision-cards-container connected-cards">
+    <div class="vision-card-3d reveal-zoom"><span class="v-number">01</span><h3>Intelligence</h3><p>Moving beyond static reflections to an interface that understands context, weather, and you.</p></div>
+    <div class="vision-card-3d reveal-zoom delay-100"><span class="v-number">02</span><h3>Protection</h3><p>To position the mirror as a life-saving device with Fall Detection and Disaster Awareness.</p></div>
+    <div class="vision-card-3d reveal-zoom delay-200"><span class="v-number">03</span><h3>Trust</h3><p>To prove that AI can be powerful without being intrusive. 100% Local Processing.</p></div>
+</div>
+        <div class="founder-wrapper">
+            <div class="founder-image-box"><img src="saurabh.png" alt="Saurabh Suman" class="founder-img"><div class="img-ring"></div></div>
+            <div class="founder-content glass-panel"><i class="fas fa-quote-left quote-icon"></i><p class="founder-message">"I wanted to build something that doesn't just hang on a wall, but cares for the people living there. mirAI isn't about complex technology; it's about giving you peace of mind, safety, and a smarter start to every morning. Simple. Private. Powerful."</p><div class="founder-sign"><span class="name">Saurabh Suman</span><span class="title">Founder & Visionary</span></div></div>
+        </div>
+    </section>
+
+    <section id="core-features" class="feature-section">
+        <div class="section-header"><h3>Core Features</h3><p>Intelligence integrated into your daily rhythm.</p></div>
+        <div class="feature-grid-3d">
+    <div class="feature-card-3d reveal"><div class="card-content"><i class="fas fa-face-viewfinder"></i><h4>Face Recognition 👤</h4><p>Identify every family member instantly and load their personalized profile, calendar, and preferences automatically.</p></div></div>
+    <div class="feature-card-3d reveal delay-100"><div class="card-content"><i class="fas fa-vest-patches"></i><h4>Outfit & Weather AI</h4><p>Analyzes your outfit and checks the weather forecast to recommend the perfect combination for the day.</p></div></div>
+    <div class="feature-card-3d reveal delay-200"><div class="card-content"><i class="fas fa-face-smile-beam"></i><h4>Mood Detection</h4><p>Detects your mood through facial expressions and suggests music, lighting, or wellness tips to lift your spirits.</p></div></div>
+    <div class="feature-card-3d highlighted reveal"><div class="card-content"><i class="fas fa-heart-pulse"></i><h4>Fall Detection</h4><p>Uses advanced skeletal tracking to detect sudden falls and instantly alerts emergency contacts. A lifesaver for seniors.</p></div></div>
+    <div class="feature-card-3d reveal delay-100"><div class="card-content"><i class="fas fa-lightbulb"></i><h4>Smart Lighting</h4><p>Auto-adjusts brightness and color temperature (Warm/Cool) for flawless makeup application and grooming.</p></div></div>
+    <div class="feature-card-3d reveal delay-200"><div class="card-content"><i class="fas fa-calendar-day"></i><h4>Smart Daily Planner</h4><p>Syncs with your Google/Apple calendar to show meetings, reminders, and estimated commute times while you brush.</p></div></div>
+</div>
+    </section>
+
+    <section id="integrations" class="integration-section">
+        <div class="integration-text"><h3>Seamlessly Synced With Your Digital Life</h3></div>
+        <div class="marquee-wrapper">
+            <div class="marquee-track">
+                <div class="brand-item"><i class="fab fa-spotify"></i><span>Spotify</span></div>
+                <div class="brand-item"><i class="fab fa-google"></i><span>Google Home</span></div>
+                <div class="brand-item"><i class="fab fa-apple"></i><span>Apple Health</span></div>
+                <div class="brand-item"><i class="fab fa-uber"></i><span>Uber</span></div>
+                <div class="brand-item"><i class="fab fa-amazon"></i><span>Alexa</span></div>
+                <div class="brand-item"><i class="fab fa-android"></i><span>Android</span></div>
+                <div class="brand-item"><i class="fas fa-cloud"></i><span>iCloud</span></div>
+                <div class="brand-item"><i class="fab fa-spotify"></i><span>Spotify</span></div>
+                <div class="brand-item"><i class="fab fa-google"></i><span>Google Home</span></div>
+                <div class="brand-item"><i class="fab fa-apple"></i><span>Apple Health</span></div>
+                <div class="brand-item"><i class="fab fa-uber"></i><span>Uber</span></div>
+                <div class="brand-item"><i class="fab fa-amazon"></i><span>Alexa</span></div>
+                <div class="brand-item"><i class="fab fa-android"></i><span>Android</span></div>
+                <div class="brand-item"><i class="fas fa-cloud"></i><span>iCloud</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="health-guardian" class="health-section">
+        <div class="section-header"><h3>Health & Guardian Intelligence</h3><p>Advanced vitals monitoring and safety protocols.</p></div>
+        <div class="health-grid">
+            <div class="health-card"><i class="fas fa-heartbeat health-icon"></i><h4>Heart Rate Monitor</h4><p>Contactless rPPG technology tracks your pulse live from the mirror, no wearables needed.</p></div>
+            <div class="health-card"><i class="fas fa-stethoscope health-icon"></i><h4>Blood Pressure AI</h4><p>Estimates Blood Pressure trends using advanced facial blood-flow analysis in real-time.</p></div>
+            <div class="health-card"><i class="fas fa-brain health-icon"></i><h4>Stress Analysis</h4><p>Detects anxiety levels via HRV and facial cues, suggesting instant calming breathing exercises.</p></div>
+        </div>
+        <div class="guardian-strategy-box"><h4><i class="fas fa-shield-halved"></i> The Guardian Protocol</h4><p>mirAI transforms from a mirror to a <strong>Guardian</strong>. In emergencies like a fall or gas leak, it autonomously alerts family members and emergency services.</p></div>
+    </section>
+    
+    <section id="super-features" class="super-section">
+        <div class="section-header"><h3>mirAI Super-Features</h3><p>Advanced capabilities for a smarter home.</p></div>
+        <div class="super-grid-3d">
+            <div class="super-card-3d"><div class="card-content"><i class="fas fa-map-location-dot"></i><h4>Proactive Commute AI</h4><p>Tracks live traffic on your route and proactively warns you to leave early if there is congestion.</p></div></div>
+            <div class="super-card-3d"><div class="card-content"><i class="fas fa-pills"></i><h4>Medication Reminders</h4><p>Visually reminds you to take medicine and tracks missed doses, especially helpful for elderly care.</p></div></div>
+            <div class="super-card-3d"><div class="card-content"><i class="fas fa-fan"></i><h4>Intelligent Climate</h4><p>Monitors CO2 and humidity levels, suggesting when to open windows or turn on the fan for better health.</p></div></div>
+            <div class="super-card-3d alert-mode"><div class="card-content"><i class="fas fa-fire-extinguisher"></i><h4>Gas Leak Detection</h4><p>Connects with sensors to detect LPG leaks and sounds an instant alarm + phone notification.</p></div></div>
+            <div class="super-card-3d alert-mode"><div class="card-content"><i class="fas fa-smog"></i><h4>Smoke Detection</h4><p>Uses visual AI to detect smoke patterns early, providing faster warnings than traditional sensors.</p></div></div>
+            <div class="super-card-3d"><div class="card-content"><i class="fas fa-globe-americas"></i><h4>Disaster Prediction</h4><p>Real-time alerts for earthquakes, cyclones, and heatwaves integrated directly into your morning routine.</p></div></div>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews-section">
+        <div class="section-header">
+            <span class="vision-label">COMMUNITY</span>
+            <h3>Voices from the Future</h3>
+            <p>Hear from the Beta Testers living with mirAI.</p>
+        </div>
+        <div class="reviews-grid">
+    <div class="review-card reveal">
+        <div class="review-quote-icon"><i class="fas fa-quote-right"></i></div>
+        <p class="review-text">"As an interior designer, I hate screens that look like tech. mirAI is different. It’s kinetic art. The interface vanishes completely when not in use. It anchors my studio perfectly."</p>
+        <div class="reviewer-info">
+            <img src="https://i.pravatar.cc/150?img=5" alt="Ananya S." class="reviewer-img">
+            <div class="reviewer-details"><h5>Ananya S.</h5><span>Interior Architect, Mumbai</span></div>
+        </div>
+    </div>
+    <div class="review-card highlight-card reveal delay-100">
+        <div class="review-quote-icon"><i class="fas fa-shield-alt"></i></div>
+        <p class="review-text">"I scanned their architecture before reserving. The 'Zero-Cloud' claim is real. All processing happens locally on the NPU. Finally, a smart device I can trust in my bedroom."</p>
+        <div class="reviewer-info">
+            <img src="https://i.pravatar.cc/150?img=8" alt="Rahul Verma" class="reviewer-img">
+            <div class="reviewer-details"><h5>Rahul Verma</h5><span>Cybersecurity Analyst</span></div>
+        </div>
+    </div>
+    <div class="review-card reveal delay-200">
+        <div class="review-quote-icon"><i class="fas fa-heartbeat"></i></div>
+        <p class="review-text">"Living alone, the Fall Detection gives my family relief. But the daily rPPG heart scan is the real winner. It detected a stress spike before I even felt it. Incredible precision."</p>
+        <div class="reviewer-info">
+            <img src="https://i.pravatar.cc/150?img=12" alt="Peter Wood" class="reviewer-img">
+            <div class="reviewer-details"><h5>Peter Wood</h5><span>Beta Tester, Berlin</span></div>
+        </div>
+    </div>
+</div>
+    </section>
+
+    <section id="privacy-dedicated" class="privacy-dedicated-section">
+        <div class="priv-header"><h2 class="priv-title">Privacy & Safety Architecture</h2><p class="priv-subtitle">Your home is your sanctuary.</p></div>
+        <div class="priv-grid">
+            <div class="priv-card"><div class="priv-icon"><i class="fas fa-microchip"></i></div><h3>Local Processing Only</h3><p>All computer-vision tasks happen offline inside the device. Even if someone hacks the internet, there is nothing to steal.</p></div>
+            <div class="priv-card"><div class="priv-icon"><i class="fas fa-video-slash"></i></div><h3>No Recording</h3><p>mirAI's camera works in LIVE mode only. It analyzes visual input instantly and automatically discards everything. No footage is uploaded.</p></div>
+            <div class="priv-card"><div class="priv-icon"><i class="fas fa-lock"></i></div><h3>Physical Shutter</h3><p>A real mechanical blocker. When you close the shutter, the camera is physically blind. No software or hacker can override it.</p></div>
+            <div class="priv-card"><div class="priv-icon"><i class="fas fa-user-shield"></i></div><h3>Limited AI Scope</h3><p>The AI is restricted. It cannot track people outside the mirror zone. It does not monitor your room.</p></div>
+        </div>
+    </section>
+
+    <section id="tech-specs" class="specs-section">
+        <div class="section-header">
+            <h3>Under The Hood</h3>
+            <p>Engineering that feels like magic.</p>
+        </div>
+        
+        <div class="specs-grid-expanded">
+            <div class="spec-card-large">
+                <div class="spec-icon-box"><i class="fas fa-microchip"></i></div>
+                <div class="spec-content">
+                    <h4>Neural Engine X1</h4>
+                    <span class="spec-highlight">4 Trillion Operations/sec</span>
+                    <p>A custom-built NPU (Neural Processing Unit) designed solely for privacy. It processes Face ID, Heart Rate, and Voice commands <strong>100% offline</strong>. No data ever leaves this chip.</p>
+                </div>
+            </div>
+
+            <div class="spec-card-large">
+                <div class="spec-icon-box"><i class="fas fa-tv"></i></div>
+                <div class="spec-content">
+                    <h4>Infinity OLED 4K</h4>
+                    <span class="spec-highlight">True-Black Technology</span>
+                    <p>Our "Zero-Gap" bonding technique merges the 4K screen with the mirror glass. When the UI is off, the pixels turn purely black, making the technology invisible.</p>
+                </div>
+            </div>
+
+            <div class="spec-card-large">
+                <div class="spec-icon-box"><i class="fas fa-fingerprint"></i></div>
+                <div class="spec-content">
+                    <h4>Multi-Sense Array</h4>
+                    <span class="spec-highlight">LiDAR + rPPG + Radar</span>
+                    <p>Clinical-grade optical sensors allow for contactless health scanning. LiDAR enables "Air Gestures" so you can control the mirror without touching it (no fingerprints).</p>
+                </div>
+            </div>
+
+            <div class="spec-card-large">
+                <div class="spec-icon-box"><i class="fas fa-music"></i></div>
+                <div class="spec-content">
+                    <h4>Sonic Surface Audio</h4>
+                    <span class="spec-highlight">Invisible Speakers</span>
+                    <p>No speaker grills. Actuators behind the glass turn the entire mirror surface into a high-fidelity speaker, delivering immersive, room-filling sound.</p>
+                </div>
+            </div>
+
+            <div class="spec-card-large">
+                <div class="spec-icon-box"><i class="fas fa-wifi"></i></div>
+                <div class="spec-content">
+                    <h4>Hyper-Connectivity</h4>
+                    <span class="spec-highlight">Wi-Fi 6E + Bluetooth 5.3</span>
+                    <p>Seamlessly syncs with your ecosystem. Supports ultra-low latency connection with Smart Lights, Door Locks, and Wearables instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="models" class="pricing-section">
+        <div class="section-header"><span class="vision-label">THE COLLECTION</span><h3>Choose Your Future</h3><p>Two masterpieces. One intelligent soul.</p></div>
+        <div class="pricing-grid">
+            <div class="model-card">
+                <div class="card-glow"></div>
+                <div class="model-header"><div class="model-badge">ESSENTIAL</div><h4>mirAI <span>Core</span></h4><p class="model-desc">The perfect entry into the smart home era. Minimalist design for modern spaces.</p></div>
+                <ul class="model-features"><li><i class="fas fa-check"></i> Smart Day Planning</li><li><i class="fas fa-check"></i> Weather & Commute AI</li><li><i class="fas fa-check"></i> Standard Aluminum Frame</li><li><i class="fas fa-check"></i> 1 Year Warranty</li></ul>
+                <div class="price-suspense-container"><div class="blurred-price">₹ XX,999</div><div class="suspense-tag">PRICING REVEAL SOON</div></div>
+                <button class="model-btn">Join Waitlist</button>
+            </div>
+            <div class="model-card featured-model">
+                <div class="card-glow gold-glow"></div>
+                <div class="model-header"><div class="model-badge gold-badge">SIGNATURE EDITION</div><h4>mirAI <span>Luxe</span></h4><p class="model-desc">The ultimate health & safety guardian. Hand-finished for true luxury.</p></div>
+                <ul class="model-features"><li><i class="fas fa-check text-gold"></i> <strong>Everything in Core</strong></li><li><i class="fas fa-check text-gold"></i> Health Vitals Scanning (rPPG)</li><li><i class="fas fa-check text-gold"></i> Fall Detection & Safety AI</li><li><i class="fas fa-check text-gold"></i> Premium Gold/Wood Frame</li></ul>
+                <div class="price-suspense-container"><div class="blurred-price text-gold">₹ XX,999</div><div class="suspense-tag gold-tag">PRICING REVEAL SOON</div></div>
+                <button class="model-btn btn-gold">Reserve Priority Access</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparison" class="compare-section">
+        <div class="section-header"><h3>Why mirAI?</h3><p>See the clear difference.</p></div>
+        <div class="table-wrapper glass-panel">
+            <table class="compare-table">
+                <thead><tr><th class="feature-col">Feature</th><th>Regular Mirror</th><th>Generic Smart Mirror</th><th class="mirai-col">mirAI <i class="fas fa-crown"></i></th></tr></thead>
+                <tbody>
+                    <tr><td>Privacy (Offline AI)</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-times text-red"></i> (Cloud Based)</td><td><i class="fas fa-check text-gold"></i> 100% Local</td></tr>
+                    <tr><td>Fall Detection</td><td><i class="fas fa-times text-red"></i></td><td><i class="fas fa-times text-red"></i></td><td><i class="fas fa-check text-gold"></i> Active Guardian</td></tr>
+                    <tr><td>Health/Stress Monitoring</td><td><i class="fas fa-times text-red"></i></td><td><i class="fas fa-minus"></i> (Basic)</td><td><i class="fas fa-check text-gold"></i> Clinical Grade</td></tr>
+                    <tr><td>Aesthetics</td><td>Standard</td><td>Bulky / Techy</td><td><i class="fas fa-gem text-gold"></i> Luxury Furniture</td></tr>
+                    <tr><td>Physical Camera Shutter</td><td>N/A</td><td><i class="fas fa-times text-red"></i></td><td><i class="fas fa-check text-gold"></i> Included</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="faq" class="faq-section">
+        <div class="faq-container">
+            <h2 class="faq-main-title">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item"><button class="faq-question"><span>Is mirAI safe to use in the bedroom?</span><i class="fas fa-plus"></i></button><div class="faq-answer"><p>Yes. mirAI processes everything offline with no video recording. It has a physical camera shutter.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span>Does mirAI send my data to the cloud?</span><i class="fas fa-plus"></i></button><div class="faq-answer"><p>No. All computer-vision tasks happen offline inside the device. Nothing leaves your home.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span>Can mirAI detect emergencies?</span><i class="fas fa-plus"></i></button><div class="faq-answer"><p>Yes. It detects falls, smoke, and gas leaks, sending real-time alerts to family members.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span>How does the Physical Shutter work?</span><i class="fas fa-plus"></i></button><div class="faq-answer"><p>It is a mechanical blocker. When closed, the camera is physically blind. Software cannot override it.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span>Will agarbatti or kitchen smoke trigger alarms?</span><i class="fas fa-plus"></i></button><div class="faq-answer"<p>No. mirAI uses <strong>Visual AI Discrimination</strong>. It distinguishes between the harmless, thin stream of incense smoke and the dense, turbulent smoke of a fire. It also cross-checks with heat sensors to ensure zero false alarms.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span>Is this better than Alexa or Google?</span><i class="fas fa-plus"></i></button><div class="faq-answer"><p>mirAI does not listen 24/7 or stream audio/video to the cloud. It is safer by design.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span>Does it work for multiple users?</span><i class="fas fa-plus"></i></button><div class="faq-answer"><p>Yes. Face recognition identifies each user and loads their personal profile instantly.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span>What about medication reminders?</span><i class="fas fa-plus"></i></button><div class="faq-answer"><p>It tracks schedules and reminds seniors via visual and audio cues if they miss a dose.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span>Can it predict weather disasters?</span><i class="fas fa-plus"></i></button><div class="faq-answer"><p>Yes, it tracks AQI, heatwaves, cyclones, and storms to warn you before you leave.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span>Is there a Guest Mode?</span><i class="fas fa-plus"></i></button><div class="faq-answer"><p>Yes. In Guest Mode, all data is instantly wiped after use or checkout.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span>What if the internet is hacked?</span><i class="fas fa-plus"></i></button><div class="faq-answer"><p>There is nothing to steal because the camera feed never leaves the device's local memory.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="contact-content"><h2 class="section-title">Get in Touch</h2><div class="contact-grid"><div class="contact-box"><i class="fas fa-map-marker-alt"></i><h4>Visit Us</h4><p>mirAI Headquarters<br>Innovation Tower, Cyber City<br>Gurugram, India 122002</p></div><div class="contact-box"><i class="fas fa-headset"></i><h4>Customer Support</h4><p>help@mirai.com<br>+91 98765 43210</p></div><div class="contact-box"><i class="fas fa-share-alt"></i><h4>Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div></div></div>
+    </section>
+
+    <footer id="footer">
+        <div class="footer-container">
+            <h2>The Future is Looking at You.</h2>
+            <p class="waitlist-text"><strong>Join the waitlist for the first batch of mirAI.</strong></p>
+            
+            <form action="https://api.web3forms.com/submit" method="POST" class="waitlist-form-expanded">
+                
+                <input type="hidden" name="access_key" value="e1611c19-3eab-4d8c-b011-3cc2e3640c60">
+                
+                <input type="hidden" name="redirect" value="https://web3forms.com/success">
+
+                <div class="form-row">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="tel" name="phone" placeholder="Mobile Number" required>
+                </div>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="text" name="address" placeholder="Full Address with Landmark" required>
+                <div class="form-row">
+                    <input type="text" name="city" placeholder="City" required>
+                    <input type="text" name="pincode" placeholder="Pincode" required>
+                </div>
+                <button type="submit">RESERVE NOW</button>
+            </form>
+
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p class="copyright">
+    © 2025 mirAI. Designed & Presented by <strong>Saurabh Suman</strong>.
+    <br><br> 
+    <a href="privacy.html" class="privacy-highlight" style="margin-right: 15px;">Privacy Policy</a>
+    <a href="terms.html" class="privacy-highlight">Terms & Conditions</a>
+</p>
+        </div>
+<section class="awards-premium-section">
+        <div class="awards-overlay"></div>
+        <div class="awards-content-wrapper">
+            <div class="awards-header">
+                <span class="gold-line"></span>
+                <span class="header-title">INDUSTRY RECOGNITION</span>
+                <span class="gold-line"></span>
+            </div>
+            
+            <div class="awards-card-grid">
+                <div class="award-box">
+                    <div class="award-glow"></div>
+                    <i class="fas fa-trophy box-icon"></i>
+                    <h3>Best Design 2025</h3>
+                    <p>ArchDigest India</p>
+                </div>
+
+                <div class="award-box">
+                    <div class="award-glow"></div>
+                    <i class="fas fa-bolt box-icon"></i>
+                    <h3>Most Innovative AI</h3>
+                    <p>TechCrunch Disrupt</p>
+                </div>
+
+                <div class="award-box">
+                    <div class="award-glow"></div>
+                    <i class="fas fa-leaf box-icon"></i>
+                    <h3>Eco-Friendly Tech</h3>
+                    <p>Green Future Awards</p>
+                </div>
+
+                <div class="award-box">
+                    <div class="award-glow"></div>
+                    <i class="fas fa-star box-icon"></i>
+                    <h3>User's Choice</h3>
+                    <p>Product Hunt</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    </footer>
+<div class="chatbot-toggler" onclick="toggleChat()">
+    <div class="chat-btn-pulse"></div>
+    <i class="fas fa-robot"></i>
+</div>
+
+<div class="chatbot-container" id="chatbot">
+    <div class="chat-header">
+        <div class="chat-title">
+            <i class="fas fa-robot"></i>
+            <div class="bot-info">
+                <span>mirAI Assistant</span>
+                <span class="status-dot">Online</span>
+            </div>
+        </div>
+        <i class="fas fa-times close-chat" onclick="toggleChat()"></i>
+    </div>
+    
+    <div class="chat-box" id="chat-box">
+        <div class="chat-msg bot">
+            <p>Welcome to the future! 🌌 <br>I am the AI brain of this mirror. You can ask me about:</p>
+            <div class="chip-container">
+                <span class="chat-chip" onclick="quickAsk('Privacy')">Privacy</span>
+                <span class="chat-chip" onclick="quickAsk('Health Features')">Health</span>
+                <span class="chat-chip" onclick="quickAsk('Price')">Price</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Ask about safety, features..." onkeypress="handleEnter(event)">
+        <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+    </div>
+</div>
+    <script src="mirAI.js"></script>
+</body>
+</html>
