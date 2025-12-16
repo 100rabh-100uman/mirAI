@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Architecture | mirAI</title>
+    <link rel="stylesheet" href="mirAI.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,600&family=Montserrat:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- PRIVACY PAGE SPECIFIC STYLES --- */
+        body {
+            background-color: #050505;
+            background-image: radial-gradient(circle at 50% 0%, #0a1525 0%, #000000 80%);
+            color: #b0c0d0;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .privacy-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 120px 5% 100px 5%;
+        }
+
+        /* Hero */
+        .privacy-hero { text-align: center; margin-bottom: 80px; animation: fadeIn 1s ease-out; }
+        .privacy-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            background: linear-gradient(135deg, #F3E5AB, #E6C288, #D4AF37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+        .privacy-hero p { font-size: 1.2rem; color: #fff; opacity: 0.8; max-width: 750px; margin: 0 auto; line-height: 1.8; }
+
+        /* BOX GRID SYSTEM */
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Wide boxes */
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .policy-box {
+            background: rgba(15, 25, 45, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 3px solid #E6C288; /* Gold Top Border */
+            padding: 40px;
+            border-radius: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .policy-box:hover {
+            transform: translateY(-5px);
+            background: rgba(15, 25, 45, 0.9);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-color: #E6C288;
+        }
+
+        .box-icon { font-size: 2.2rem; color: #E6C288; margin-bottom: 25px; }
+        
+        .policy-box h3 {
+            font-family: 'Playfair Display', serif;
+            color: #fff;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        .policy-box p {
+            color: #aab;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .tech-highlight {
+            color: #fff;
+            font-weight: 600;
+            background: rgba(230, 194, 136, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Box Specifics */
+        .contact-details-box {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .contact-details-box a { color: #E6C288; text-decoration: none; font-weight: 700; display: block; margin-bottom: 5px;}
+        .contact-details-box span { display: block; font-size: 0.9rem; color: #888; }
+
+        /* DATA MATRIX TABLE */
+        .data-section {
+            margin-bottom: 80px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .data-table { width: 100%; border-collapse: collapse; }
+        .data-table th { text-align: left; padding: 20px; color: #E6C288; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 1.1rem; }
+        .data-table td { padding: 20px; color: #ddd; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .check { color: #2ed573; margin-right: 10px; }
+        .cross { color: #ff4757; margin-right: 10px; }
+
+        /* CONTACT SECTION (AT THE END) */
+        .contact-full-box {
+            background: linear-gradient(135deg, rgba(10, 25, 50, 0.8), rgba(5, 10, 20, 0.9));
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid rgba(230, 194, 136, 0.3);
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-full-box::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(230, 194, 136, 0.1) 0%, transparent 70%);
+            animation: pulseLight 4s infinite;
+        }
+        @keyframes pulseLight { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+
+        .contact-full-box h3 { font-family: 'Playfair Display', serif; color: #fff; font-size: 2rem; margin-bottom: 10px; position: relative; z-index: 2; }
+        .contact-info { font-size: 1.2rem; color: #fff; margin-top: 20px; line-height: 2; position: relative; z-index: 2; }
+        .contact-info a { color: #E6C288; text-decoration: none; font-weight: 700; border-bottom: 1px dashed #E6C288; }
+        
+        /* Back Button Style */
+        .back-btn {
+            padding: 15px 40px;
+            border: 1px solid #E6C288;
+            color: #E6C288;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            display: inline-block;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .back-btn:hover { background: #E6C288; color: #000; box-shadow: 0 0 20px rgba(230, 194, 136, 0.4); }
+
+        @media (max-width: 768px) {
+            .policy-grid { grid-template-columns: 1fr; }
+            .privacy-hero h1 { font-size: 2.5rem; }
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <header id="navbar" style="position: absolute; top: 0; width: 100%; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center;">
+        <div class="brand-logo-nav">
+            <a href="javascript:void(0)" onclick="window.history.back()" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
+                <span style="color: #fff; font-family: 'Playfair Display'; font-weight: 700; font-size: 1.5rem;">mir<span style="font-style: italic; color: #E6C288;">AI</span></span>
+            </a>
+        </div>
+    </header>
+
+    <div class="privacy-wrapper">
+        
+        <section class="privacy-hero">
+            <h1>The Architecture of Privacy.</h1>
+            <p>We built mirAI with a radical "Offline-First" philosophy. We process intelligence on the edge, protecting your sovereignty by design.</p>
+        </section>
+
+        <div class="policy-grid">
+            
+            <div class="policy-box">
+                <i class="fas fa-microchip box-icon"></i>
+                <h3>1. Edge Computing & NPU</h3>
+                <p>All facial recognition and health analysis happens locally on the mirror's <strong>Neural Processing Unit (NPU)</strong>.</p>
+                <p>Unlike standard smart devices, we do not stream your video feed to remote servers. The intelligence lives inside the glass, ensuring that your raw visual data never leaves the physical boundaries of your home.</p>
+            </div>
+
+            <div class="policy-box">
+                <i class="fas fa-user-secret box-icon"></i>
+                <h3>2. Zero-Knowledge Proof</h3>
+                <p>We do not know who you are. Your biometric templates are encrypted and stored solely on your device's secure element.</p>
+                <p>They are accessible only by you via your face or PIN. Even mirAI engineers cannot access, view, or reconstruct your facial data from our side.</p>
+            </div>
+
+            <div class="policy-box">
+                <i class="fas fa-lock box-icon"></i>
+                <h3>3. The Mechanical Shutter</h3>
+                <p>Privacy isn't just software; it's physics. Every mirAI unit features a <span class="tech-highlight">Hardware Blocker</span>.</p>
+                <p>With a simple slide, you physically cover the camera lens. This cuts off all visual input at the source. It ensures that no matter what software is running, the camera is physically blind when you want total privacy.</p>
+            </div>
+
+            <div class="policy-box">
+                <i class="fas fa-link box-icon"></i>
+                <h3>4. Third-Party Integrations</h3>
+                <p>If you choose to link services like <strong>Spotify, Uber, or Google Calendar</strong>, mirAI acts merely as a secure display. We use standard, secure <span class="tech-highlight">OAuth 2.0</span> tokens to fetch your info.</p>
+                <p>We strictly <strong>do not store your passwords</strong>, and we do not have access to your account credentials. We certainly do not sell your usage habits or health trends to advertisers.</p>
+            </div>
+
+            <div class="policy-box">
+                <i class="fas fa-shield-alt box-icon"></i>
+                <h3>5. Encryption Standards</h3>
+                <p>All local data is protected using <span class="tech-highlight">AES-256 bit encryption</span>. This is the gold standard for data security used by governments and financial institutions.</p>
+                <p>Even if someone were to physically steal the mirror and dismantle it, they cannot access your biometric profile without your unique decryption key.</p>
+            </div>
+
+            <div class="policy-box">
+                <i class="fas fa-trash-alt box-icon"></i>
+                <h3>6. Right to Erase</h3>
+                <p>You own your data completely. Selling your mirror or just want a fresh start?</p>
+                <p>A single <strong>"Factory Reset"</strong> command securely wipes the local flash storage, overwriting your biometric templates and health history multiple times, making the data mathematically irretrievable.</p>
+            </div>
+
+        </div>
+
+        <section class="data-section">
+            <h2 class="section-title">Data Visibility Matrix</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Processed On-Device?</th>
+                        <th>Uploaded to Cloud?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Facial Images</strong></td>
+                        <td><i class="fas fa-check check"></i> Yes (Instantly Deleted)</td>
+                        <td><i class="fas fa-times cross"></i> <strong>NEVER</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Health Vitals (rPPG)</strong></td>
+                        <td><i class="fas fa-check check"></i> Yes (Encrypted)</td>
+                        <td><i class="fas fa-times cross"></i> No</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Voice (Wake Word)</strong></td>
+                        <td><i class="fas fa-check check"></i> Yes (Local Chip)</td>
+                        <td><i class="fas fa-times cross"></i> No</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Calendar/Traffic</strong></td>
+                        <td><i class="fas fa-check check"></i> Yes</td>
+                        <td><i class="fas fa-check check"></i> Fetched via Secure API</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div class="contact-full-box">
+            <h3>Contact Our Data Safety Officer</h3>
+            <p style="color:#aaa; max-width: 600px; margin: 0 auto;">If you have any questions about our privacy architecture, please contact us directly.</p>
+            <div class="contact-info">
+                Email: <a href="mailto:privacy@mirai.com">privacy@mirai.com</a><br>
+                Address: mirAI Headquarters, Cyber City, Gurugram, India.
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="javascript:void(0)" onclick="window.history.back()" class="back-btn">RETURN TO HOME</a>
+        </div>
+
+    </div>
+
+    <div id="three-bg" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; background: radial-gradient(circle at 50% 0%, #0a1525 0%, #000000 80%);"></div>
+
+</body>
+</html>
