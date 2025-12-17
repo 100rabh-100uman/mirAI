@@ -2071,4 +2071,157 @@ video { width: 100%; height: auto; border-radius: 10px; border: 2px solid var(--
 /* Mobile Fix */
 @media (max-width: 480px) {
     .chatbot-container { width: 90%; right: 5%; bottom: 100px; height: 60vh; }
+
+}
+
+/* =========================================
+   ULTRA-PREMIUM 3D SHUTTER ANIMATION (REALISTIC)
+   ========================================= */
+
+/* 1. Container - Centering */
+.shutter-demo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 130px; /* Thoda bada area */
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+    perspective: 1000px; /* 3D depth ke liye */
+}
+
+/* 2. The Main Camera Body - Premium Housing */
+.camera-housing {
+    width: 90px;
+    height: 90px;
+    /* Dark brushed metal look */
+    background: linear-gradient(145deg, #1c1c1c, #0a0a0a);
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    /* Luxury Gold Bezel Ring with multiple shadows for depth */
+    box-shadow: 
+        0 0 0 2px #0a0a0a, /* Inner dark definition */
+        0 0 0 4px #b38b47, /* Inner gold ring */
+        0 0 0 5px #f5d58a, /* Outer bright gold edge */
+        inset 0 5px 15px rgba(0,0,0,0.8), /* Inner depth shadow */
+        0 15px 35px rgba(0,0,0,0.6); /* Drop shadow */
+    border: none; /* Using box-shadow instead for realism */
+}
+
+/* Outer subtle glow ring */
+.camera-housing::after {
+    content: '';
+    position: absolute;
+    top: -10px; left: -10px;
+    right: -10px; bottom: -10px;
+    border-radius: 50%;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    z-index: -1;
+}
+
+/* 3. The Lens - Real Glass Effect */
+.camera-lens {
+    width: 46px;
+    height: 46px;
+    /* Deep dark glass with curved reflection */
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 0%, rgba(0,0,0,1) 70%),
+                radial-gradient(circle at 70% 70%, #2a2a2a 0%, #000 100%);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Inner lens housing ring */
+    border: 3px solid #1a1a1a;
+    box-shadow: inset 0 3px 8px rgba(0,0,0,0.8);
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Sharp lens reflection (Chamak) */
+.camera-lens::before {
+    content: '';
+    position: absolute;
+    width: 20px; height: 10px;
+    background: rgba(255,255,255,0.5);
+    top: 8px; left: 8px;
+    border-radius: 50%;
+    transform: rotate(-45deg);
+    filter: blur(2px);
+}
+
+/* 4. The Mechanical Shutter - Interlocking Blades Look */
+.mechanical-shutter {
+    position: absolute;
+    top: -105%; /* Fully open */
+    left: 0;
+    width: 100%;
+    height: 105%; /* Slightly taller to cover fully */
+    z-index: 5;
+    
+    /* Simulated overlapping metallic blades texture */
+    background: repeating-linear-gradient(
+        180deg,
+        #2a2a2a 0px,
+        #1a1a1a 2px,  /* Blade edge highlight */
+        #0a0a0a 3px,  /* Dark blade body */
+        #0a0a0a 15px,
+        #111 16px     /* Shadow between blades */
+    );
+    box-shadow: 0 5px 10px rgba(0,0,0,0.5); /* Shadow cast by the shutter */
+    
+    /* Realistic mechanical movement (Snap shut, slow open) */
+    animation: realisticShutterToggle 4s infinite cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+/* Nickel grip line on the shutter */
+.shutter-grip {
+    width: 30px;
+    height: 3px;
+    background: linear-gradient(90deg, #333, #777, #333);
+    margin: 70% auto 0 auto; /* Positioned near bottom edge */
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+/* 5. Premium LED Indicator */
+.privacy-led {
+    width: 6px;
+    height: 6px;
+    background: #00ff00;
+    border-radius: 50%;
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    z-index: 6;
+    /* Soft diffused glow */
+    box-shadow: 0 0 8px 2px rgba(0, 255, 0, 0.6);
+    animation: realisticLEDToggle 4s infinite cubic-bezier(0.7, 0, 0.3, 1);
+    border: 1px solid rgba(0,0,0,0.5); /* Tiny bezel for LED */
+}
+
+/* --- REALISTIC KEYFRAMES --- */
+@keyframes realisticShutterToggle {
+    0%, 45% { top: -105%; } /* Open state */
+    50% { top: 0%; }        /* Snap closed */
+    90% { top: 0%; }        /* Stay closed */
+    100% { top: -105%; }    /* Slide open */
+}
+
+@keyframes realisticLEDToggle {
+    0%, 45% { 
+        background: #28a745; /* Rich Green */
+        box-shadow: 0 0 8px 2px rgba(40, 167, 69, 0.6);
+    }
+    48% { /* Quick transition just before close */
+         background: #28a745;
+    }
+    50%, 90% { 
+        background: #dc3545; /* Rich Red */
+        box-shadow: 0 0 8px 2px rgba(220, 53, 69, 0.6);
+    }
+    100% { 
+        background: #28a745;
+    }
 }
