@@ -3,17 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>mirAI | The Future</title>
 
     <link rel="stylesheet" href="mirAI.css">
-    </head>
-    <link rel="stylesheet" href="mirAI.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,600&family=Montserrat:wght@300;400;500;600;800&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
@@ -76,13 +71,34 @@
         </div>
     </div>
 
-    <div id="myNav" class="sidebar-overlay">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="overlay-content">
-            <a href="javascript:void(0)" onclick="openJourneyPage()" class="highlight-link">A day with mirAI</a>
-            <a href="javascript:void(0)" onclick="openAppPage()" class="highlight-link">The App Ecosystem</a>
+ <div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    
+    <div class="nav-brand-header">
+        <div class="brand-logic">
+            <span class="brand-name-main">mirAI</span>
+            <span class="brand-tagline">NEURAL INTERFACE OS</span>
+        </div>
+        <div class="brand-status-indicator">
+            <div class="pulse-dot"></div>
+            <div class="status-text-stack">
+                <span class="system-status">SYSTEM ONLINE</span>
+                <span id="live-location" class="location-status">
+                    <i class="fas fa-location-dot"></i> FETCHING...
+                </span>
+            </div>
         </div>
     </div>
+
+    <div class="overlay-content">
+        <a href="javascript:void(0)">A day with mirAI</a>
+        <div class="nav-link-wrapper">
+            <a href="javascript:void(0)" onclick="openHospitalityPage()">The Hospitality Suite</a>
+            <span class="guest-mode-tag">GUEST MODE</span>
+        </div>
+        <a href="javascript:void(0)" onclick="openAppPage()">The App Ecosystem</a>
+    </div>
+</div>
 
     <div id="journey-overlay-section" class="app-fullscreen-overlay">
         <a href="javascript:void(0)" class="close-app-btn" onclick="closeJourneyPage()">&times;</a>
@@ -145,7 +161,175 @@
             </section>
         </div>
     </div>
+<div id="hospitality-overlay-section" class="app-fullscreen-overlay">
+    
+    <a href="javascript:void(0)" class="close-app-btn" onclick="closeHospitalityPage()">&times;</a>
+    
+    <div class="app-content-wrapper">
+        <section class="hospitality-detail-section">
+            
+            <div class="hosp-hero-header reveal">
+                <span class="vision-label">THE FUTURE OF STAY</span>
+                <h3 class="gold-gradient-text">mirAI: The Invisible Hotel Manager</h3>
+                <p class="hosp-main-desc">
+                    Transforming standard hotel rooms into high-performance intelligent ecosystems. 
+                    Redefining luxury through **Zero-Friction** interaction and **Real-Time** operational control.
+                </p>
+            </div>
 
+            <div class="hosp-feature-module reveal">
+                <div class="hosp-module-text">
+                    <h4><i class="fas fa-id-card-alt"></i> 1. AI-Driven Identity & Global Localization</h4>
+                    <div class="hosp-text-block">
+                        <p><strong>The Intelligence:</strong> Instant sync with the Hotel's Property Management System (PMS) at the exact millisecond of check-in.</p>
+                        <p><strong>The Experience:</strong> mirAI recognizes the guest's nationality. If you are from France, Japan, or India, the mirror speaks and displays everything in **your native language**. No more confusing language barriers with the staff.</p>
+                        <p class="hosp-benefit"><i class="fas fa-sparkles"></i> Result: 100% Guest Comfort & Instant Familiarity.</p>
+                    </div>
+                </div>
+                <div class="hosp-badge">ZERO-BARRIER TECH</div>
+            </div>
+
+            <div class="hosp-menu-module reveal">
+                <div class="menu-header">
+                    <h4><i class="fas fa-utensils gold-text"></i> 2. Dynamic Meal Planning & Live Mess Menu</h4>
+                    <p class="module-desc">Stop the "Dining Hall Disappointment". See exactly what is cooking before you even decide to dress up for dinner.</p>
+                </div>
+
+                <div class="menu-display-grid">
+                    <div class="menu-box">
+                        <h5><i class="fas fa-mug-saucer"></i> Breakfast</h5>
+                        <p>Live Omelet Station, Continental Spread, Fresh Tropical Juices.</p>
+                        <span class="status-tag">Live Now</span>
+                    </div>
+                    <div class="menu-box active">
+                        <h5><i class="fas fa-bowl-food"></i> Lunch (Today's Special)</h5>
+                        <p>Paneer Butter Masala, Garlic Naan, Dal Makhani, Seasonal Salad.</p>
+                        <span class="status-tag">Upcoming</span>
+                    </div>
+                    <div class="menu-box">
+                        <h5><i class="fas fa-plate-wheat"></i> Dinner</h5>
+                        <p>Grilled Salmon with Asparagus, Quinoa Salad, Warm Fruit Custard.</p>
+                        <span class="status-tag">Scheduled</span>
+                    </div>
+                </div>
+                <p class="small-info">
+                    <i class="fas fa-lightbulb"></i> <strong>Smarter Planning:</strong> Don’t like the menu? Use the Visual Catalog below to order a custom chef-prepared meal directly to your room.
+                </p>
+            </div>
+
+            <div class="hosp-grid-v2">
+                <div class="hosp-card-v2 reveal">
+                    <div class="hosp-card-icon"><i class="fas fa-microphone-lines gold-text"></i></div>
+                    <h4>Smart Voice Concierge</h4>
+                    <p>No more dusty desk phones. Just say *"mirAI, I need two towels"* or *"send a water bottle"*. The request reaches the specific floor-staff's mobile app in 0.1s.</p>
+                    <span class="hosp-benefit">Reduces human labor by 40%</span>
+                </div>
+                <div class="hosp-card-v2 reveal delay-100">
+                    <div class="hosp-card-icon"><i class="fas fa-shopping-basket gold-text"></i></div>
+                    <h4>Visual Order Catalog</h4>
+                    <p>Browse high-res food, spa, and laundry menus on the mirror glass. Attach <strong>Voice Notes</strong> for custom requests (e.g., "Make my coffee extra hot and less sugar").</p>
+                    <span class="hosp-benefit">Increases Impulse Revenue by 25%</span>
+                </div>
+            </div>
+
+            <div class="hosp-billing-module reveal">
+                <div class="billing-header">
+                    <h4><i class="fas fa-file-invoice-dollar gold-text"></i> 4. Real-Time Live Billing & Ledger</h4>
+                    <p class="module-desc">Eliminate "Checkout-Day Anxiety". Every order delivered is an order recorded instantly on your screen.</p>
+                </div>
+                <div class="billing-simulation-box">
+                    <div class="bill-row"><span>Room Reservation (Base Price)</span><span>₹ 45,000</span></div>
+                    <div class="bill-row highlight"><span>Order Delivered: Cappuccino (Delivered)</span><span class="gold-text">+ ₹ 350</span></div>
+                    <div class="bill-row"><span>Spa Session (Pre-booked)</span><span>₹ 2,500</span></div>
+                    <div class="bill-total"><span>CURRENT TOTAL BILL</span><span>₹ 47,850</span></div>
+                </div>
+                <p class="small-info"><i class="fas fa-check-circle"></i> Complete financial transparency. Know exactly what you owe every second of your stay.</p>
+            </div>
+
+            <div class="hosp-maintenance-engine reveal">
+                <div class="engine-header">
+                    <h4><i class="fas fa-microchip gold-text"></i> 5. A-Z Smart Maintenance Hub</h4>
+                    <p>Direct room diagnostics. Report issues from Bed to Jet-Spray in one tap. Staff is notified automatically without any middle-man.</p>
+                </div>
+
+                <div class="interactive-maintenance-grid">
+                    <div class="m-item" onclick="reportIssue(this, 'Housekeeping')">
+                        <i class="fas fa-bed"></i><span>Bed Issue</span><div class="status-dot"></div>
+                    </div>
+                    <div class="m-item" onclick="reportIssue(this, 'Plumbing')">
+                        <i class="fas fa-faucet"></i><span>Tap / Shower</span><div class="status-dot"></div>
+                    </div>
+                    <div class="m-item" onclick="reportIssue(this, 'Electrician')">
+                        <i class="fas fa-wind"></i><span>AC & Cooling</span><div class="status-dot"></div>
+                    </div>
+                    <div class="m-item" onclick="reportIssue(this, 'Electrician')">
+                        <i class="fas fa-plug"></i><span>Switch Board</span><div class="status-dot"></div>
+                    </div>
+                    <div class="m-item" onclick="reportIssue(this, 'Plumbing')">
+                        <i class="fas fa-bath"></i><span>Jet Spray</span><div class="status-dot"></div>
+                    </div>
+                    <div class="m-item" onclick="reportIssue(this, 'Support')">
+                        <i class="fas fa-lightbulb"></i><span>Lights/Electricity</span><div class="status-dot"></div>
+                    </div>
+                </div>
+
+                <div id="issue-status-panel">
+                    <i class="fas fa-info-circle"></i> 
+                    <span>Select a problem. Once solved, a **Green Tick** will appear on your mirror.</span>
+                </div>
+            </div>
+
+            <div class="hosp-grid-v2">
+                <div class="hosp-card-v2 reveal">
+                    <div class="hosp-card-icon"><i class="fas fa-user-shield gold-text"></i></div>
+                    <h4>Privacy Verified Badge</h4>
+                    <p>Certified **100% Offline** processing via Neural Engine X1. Zero recording, zero cloud upload. Guest privacy is non-negotiable.</p>
+                </div>
+                <div class="hosp-card-v2 reveal delay-100">
+                    <div class="hosp-card-icon"><i class="fas fa-moon gold-text"></i></div>
+                    <h4>Sleep & Wakeup Protocol</h4>
+                    <p>Voice-activated DND. Circadian lighting that simulates a natural sunrise for a "Gentle Awakening" without jarring alarms.</p>
+                </div>
+                <div class="hosp-card-v2 alert-mode reveal delay-200">
+                    <div class="hosp-card-icon"><i class="fas fa-triangle-exclamation"></i></div>
+                    <h4>Guardian: Emergency Mode</h4>
+                    <p>In case of fire or earthquake, all mirrors turn **Bright Red**, playing guided evacuation audio and showing floor-specific exit maps.</p>
+                </div>
+            </div>
+
+            <div class="hosp-business-impact reveal">
+                <h4 class="impact-title"><i class="fas fa-chart-line gold-text"></i> Before vs After mirAI Transformation</h4>
+                <div class="comp-table-v2">
+                    <div class="table-row header"><span>Service</span><span>Traditional Hotel</span><span>mirAI Hospitality</span></div>
+                    <div class="table-row"><span>Requests</span><span>Slow Phone Calls / Hold</span><span class="gold-text">Instant Voice / 1-Tap</span></div>
+                    <div class="table-row"><span>Room Issues</span><span>Manual Reporting & Delay</span><span class="gold-text">A-Z Hub / Ticket-based</span></div>
+                    <div class="table-row"><span>F&B Revenue</span><span>Paper Menus (Ignored)</span><span class="gold-text">Visual Catalog (Upselling)</span></div>
+                    <div class="table-row"><span>Billing</span><span>Checkout Surprises</span><span class="gold-text">Live Ledger on Mirror</span></div>
+                    <div class="table-row"><span>Exit Flow</span><span>Long Lobby Queues</span><span class="gold-text">Express QR Checkout</span></div>
+                </div>
+            </div>
+
+            <div class="hosp-final-actions-wrapper reveal">
+                <div class="hosp-vision-statement">
+                    <h4 class="vision-title">
+                        mirAI is not just a device; it is your <span class="gold-gradient-text">Invisible Hotel Manager.</span>
+                    </h4>
+                    <p class="vision-subtitle">
+                        Reducing labor force, increasing revenue, and delivering magic to every stay
+                    </p>
+                </div>
+                
+                <div class="hosp-action-divider"></div>
+                <button class="premium-home-btn" onclick="closeHospitalityPage()">
+                    <span class="btn-text">BACK TO HOME HUB</span>
+                    <i class="fas fa-house-chimney"></i>
+                    <div class="btn-glow"></div>
+                </button>
+            </div>
+
+        </section>
+    </div>
+</div>
     <div id="app-overlay-section" class="app-fullscreen-overlay">
         <a href="javascript:void(0)" class="close-app-btn" onclick="closeAppPage()">&times;</a>
         <div class="app-content-wrapper">
@@ -608,6 +792,15 @@
                     <p>Seamlessly syncs with your ecosystem. Supports ultra-low latency connection with Smart Lights, Door Locks, and Wearables instantly.</p>
                 </div>
             </div>
+
+            <div class="spec-card-large">
+                <div class="spec-icon-box"><i class="fas fa-bolt"></i></div>
+                <div class="spec-content">
+                    <h4>Quantum-Wake Radar</h4>
+                    <span class="spec-highlight">Zero-Latency Activation</span>
+                    <p>Equipped with an ultra-low power mmWave radar sensor, mirAI detects your presence within 0.2 seconds. No buttons, no lag—just a magical, instant wake-up the moment you approach.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -782,5 +975,4 @@
 </div>
     <script src="mirAI.js"></script>
 </body>
-
 </html>
