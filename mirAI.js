@@ -914,6 +914,14 @@ function openJourneyPage() { document.getElementById("journey-overlay-section").
 function closeJourneyPage() { document.getElementById("journey-overlay-section").classList.remove('active'); }
 function openAppPage() { document.getElementById("app-overlay-section").classList.add('active'); closeNav(); }
 function closeAppPage() { document.getElementById("app-overlay-section").classList.remove('active'); }
+function openHospitalityPage() {
+    document.getElementById("hospitality-overlay-section").style.display = "block";
+    closeNav(); // मेनू बंद करने के लिए
+}
+
+function closeHospitalityPage() {
+    document.getElementById("hospitality-overlay-section").style.display = "none";
+}
 
 // Simulation Mode Switcher
 function setMode(mode) {
@@ -947,3 +955,106 @@ function setMode(mode) {
         alert("🚨 Simulation: Fall Detected! Initiating SOS Protocol.");
     }
 }
+
+/* =========================================
+   HOSPITALITY SUITE - FIXED LOGIC
+   ========================================= */
+
+// 1. Function: Hospitality Overlay खोलने के लिए
+window.openHospitalityPage = function() {
+    const hospitalityOverlay = document.getElementById("hospitality-overlay-section");
+    if (hospitalityOverlay) {
+        hospitalityOverlay.style.width = "100%"; // CSS width: 0 को 100% करेगा
+        closeNav(); // साइडबार मेनू को बंद करेगा
+        console.log("Hospitality Suite Opened");
+    } else {
+        console.error("Error: hospitality-overlay-section ID not found in HTML!");
+    }
+};
+
+// 2. Function: Hospitality Overlay बंद करने के लिए
+window.closeHospitalityPage = function() {
+    const hospitalityOverlay = document.getElementById("hospitality-overlay-section");
+    if (hospitalityOverlay) {
+        hospitalityOverlay.style.width = "0%"; // वापस छिपा देगा
+    }
+};
+
+/* --- Consistency Fix for other Overlays --- */
+// सुनिश्चित करें कि Journey और App पेज भी इसी तरह काम करें (width के साथ)
+window.openJourneyPage = function() { 
+    document.getElementById("journey-overlay-section").style.width = "100%"; 
+    closeNav(); 
+};
+window.closeJourneyPage = function() { 
+    document.getElementById("journey-overlay-section").style.width = "0%"; 
+};
+
+window.openAppPage = function() { 
+    document.getElementById("app-overlay-section").style.width = "100%"; 
+    closeNav(); 
+};
+window.closeAppPage = function() { 
+    document.getElementById("app-overlay-section").style.width = "0%"; 
+};
+
+function reportIssue(element, department) {
+    // 1. UI State Update
+    element.classList.add('reported');
+    const dot = element.querySelector('.status-dot');
+    if(dot) {
+        dot.style.background = "#00ff88";
+        dot.style.boxShadow = "0 0 10px #00ff88";
+    }
+
+    // 2. Dashboard Notification Update
+    const statusPanel = document.getElementById('issue-status-panel');
+    const itemName = element.querySelector('span').innerText;
+    
+    statusPanel.innerHTML = `
+        <span style="color:#00ff88; font-weight:700; animation: fadeIn 0.5s;">
+            <i class="fas fa-check-double"></i> 
+            Success: Ticket #8819 for <strong>${itemName}</strong> sent to <strong>${department} Dept</strong>. 
+            Estimated resolution: 15 mins.
+        </span>
+    `;
+    
+    if(typeof playClickSound === "function") playClickSound();
+}
+
+// --- MIRAI LIVE LOCATION ENGINE ---
+function updateLiveLocation() {
+    const locElement = document.getElementById('live-location');
+
+    // 1. Check if Browser supports Geolocation
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(async (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            try {
+                // 2. Reverse Geocoding API (Free & No Key needed for basic use)
+                const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+                const data = await response.json();
+                
+                // 3. Extract City and State (e.g., Kota, RJ)
+                const city = data.address.city || data.address.town || data.address.village || "Unknown";
+                const state = data.address.state || "";
+                const stateShort = state ? state.substring(0, 2).toUpperCase() : "";
+
+                locElement.innerHTML = `<i class="fas fa-location-dot"></i> ${city.toUpperCase()}, ${stateShort}`;
+            } catch (error) {
+                locElement.innerHTML = `<i class="fas fa-location-dot"></i> KOTA, RJ (Default)`;
+            }
+        }, () => {
+            locElement.innerHTML = `<i class="fas fa-location-dot"></i> ACCESS DENIED`;
+        });
+    } else {
+        locElement.innerHTML = `<i class="fas fa-location-dot"></i> NOT SUPPORTED`;
+    }
+}
+
+// Side Nav खुलने पर लोकेशन अपडेट करें
+document.querySelector('.menu-icon')?.addEventListener('click', updateLiveLocation);
+// पेज लोड होने पर भी एक बार रन करें
+updateLiveLocation();
